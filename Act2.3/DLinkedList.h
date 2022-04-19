@@ -20,15 +20,9 @@ class DLinkedList {
       DLinkedList();
       ~DLinkedList();
       int getNumElements();
-      void printList();
-      void printLastNode();
       void addFirst(T value);
       void addLast(T value);
-      bool deleteData(T value);
-      bool deleteAt(int position);
       T getData(int position);
-      void clear();
-      int findRegistro(time_t date);
       void sort();
       DLinkedList<T> getReversedSublist(int inicio, int fin);
       int getNumSublist(DLLNode<T>* inicio, DLLNode<T>* fin);
@@ -36,7 +30,7 @@ class DLinkedList {
       DLLNode<T>* partition(DLLNode<T> *low, DLLNode<T> *high);
       void quickSort(DLLNode<T> *low, DLLNode<T> *high);
       T& operator [](const int&);
-      
+      int findRegistro(time_t date);
 };
 
 template<class T>
@@ -66,23 +60,6 @@ DLinkedList<T>::~DLinkedList() {
 template<class T>
 int DLinkedList<T>::getNumElements() {
   return numElements;
-}
-
-//printList
-template<class T>
-void DLinkedList<T>::printList() {
-  DLLNode<T> *ptr = head;
-  while (ptr != nullptr) {
-      cout << ptr->data << " ";
-      ptr = ptr->next;
-  }
-  cout << endl;
-}
-
-//printLastNode
-template<class T>
-void DLinkedList<T>::printLastNode() {
-  cout << tail->data << endl;
 }
 
 //addFirst
@@ -117,91 +94,6 @@ void DLinkedList<T>::addLast(T value) {
   }
 }
 
-//deleteData
-template<class T>
-bool DLinkedList<T>::deleteData(T value) {
-  // Si la lista esta vacia 
-  if (head == nullptr && tail == nullptr) {
-    return false;
-  }
-  else {
-    DLLNode<T> *p, *q;
-    p = head;
-    q = nullptr;
-    // buscar value en la lista
-    while (p != nullptr && p->data != value) {
-      q = p;
-      p = p->next;
-    }
-    // Si no existe value en la lista
-    if (p == nullptr)
-      return false;
-    // Si debe borrarse el primer elemento
-    if (p->prev == nullptr) {
-      head = p->next;
-      if (head != nullptr)
-        head->prev = nullptr;
-    }
-    else if (p->next == nullptr) { 
-      // Si debe borrarse el último elemento
-      q->next = nullptr;
-      tail = q;
-    }
-    else {
-      // Cualquier otro elemento entre la lista 
-      q->next = p->next;
-      p->next->prev = q;
-    }
-    delete p;
-    numElements--;
-    return true;
-  }
-}
-
-//deleteAt
-template<class T>
-bool DLinkedList<T>::deleteAt(int position) {
-  if (position < 0 || position >= numElements) {
-    throw out_of_range("Indice fuera de rango");
-  }
-  else if (position == 0) { // Si debe borrarse el primer elemento
-    DLLNode<T> *p = head;
-    // Si la lista contiene solo un nodo
-    if (head != nullptr && head->next == nullptr) {
-      head = tail = nullptr;  
-    }
-    else {
-      head = p->next;
-      head->prev = nullptr;
-    }
-    delete p;
-    numElements--;
-    return true; 
-  }
-  else { // Si la lista contiene mas de un nodo
-    DLLNode<T> *p = head, *q = nullptr;
-    int index = 0;
-    // Se busca el indice del elemento a borrar
-    while (index != position) {
-      q = p;
-      p = p->next;
-      index++;
-    }
-    // Si debe borrarse el último elemento
-    if (p->next == nullptr) {
-      q->next = nullptr;
-      tail = q;
-    }
-    else { // Cualquier otro elemento en medio de la lista 
-      q->next = p->next;
-      p->next->prev = q;
-    }
-    delete p;
-    numElements--;
-    return true;
-  }
-}
-
 //getData
 template<class T>
 T DLinkedList<T>::getData(int position) {
@@ -220,35 +112,6 @@ T DLinkedList<T>::getData(int position) {
       p = p->next;
     }
     //return -1;
-  }
-}
-
-// clear
-template<class T>
-void DLinkedList<T>::clear(){
-
-  if (head == nullptr && tail == nullptr) {
-    cout << "Lista vacia ..." << endl;
-  }
-  else{
-    DLLNode<T> *p, *q;
-
-    q = head;
-    p = head->next;
-    while (p->next!=nullptr){
-      DLLNode<T> *temp = p;
-      q-> next = p->next;
-      p->next->prev = q;
-      delete temp;
-      numElements--;
-      p = q->next;
-    }
-    head = nullptr;
-    tail = nullptr;
-    delete head;
-    numElements--;
-    delete tail;
-    numElements--;
   }
 }
 

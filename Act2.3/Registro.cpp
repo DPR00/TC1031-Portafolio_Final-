@@ -34,7 +34,7 @@ time_t Registro::getDate(){
 string Registro::getInfo(){
 
     string info;
-    info = month + " " + std::to_string(day) + " " + hours + " " + ip + " " + reason;
+    info = month + " " + ((day <= 9) ? "0" : "") + std::to_string(day) + " " + hours + " " + ip + " " + reason;
     
     return info;
 }
