@@ -24,7 +24,6 @@ class DLinkedList {
       void addLast(T value);
       T getData(int position);
       void sort();
-      DLinkedList<T> getReversedSublist(int inicio, int fin);
       int getNumSublist(DLLNode<T>* inicio, DLLNode<T>* fin);
       void swap(T &val1, T &val2);
       DLLNode<T>* partition(DLLNode<T> *low, DLLNode<T> *high);
