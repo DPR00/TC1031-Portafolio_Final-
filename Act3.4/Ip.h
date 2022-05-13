@@ -39,13 +39,20 @@ Ip::Ip(string valIp, int valAt){
     accesosTotales = valAt;
 }
 
+// Devolver accesos totales (dato privado)
 int Ip::getAccesosTotales(){
     return accesosTotales;
 }
 
+
+// Devolver IP (dato privado)
 string Ip::getIp(){
     return ip;
 }
+
+// ------------------------
+// Sobrecarga de operadores
+// ------------------------
 
 bool Ip::operator > (const Ip &other){
 

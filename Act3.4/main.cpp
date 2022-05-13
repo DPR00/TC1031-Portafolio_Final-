@@ -1,5 +1,5 @@
 /**
- * Fecha: 10 May 2022
+ * Fecha: 13 May 2022
  * 
  * Integrantes: 
  *   - Diego Palma (A01759772)
@@ -45,7 +45,7 @@ int main(){
     string t_month, t_ip, t_hours;
     int t_day;
     
-    // Leer el archivo "bitacora.txt"
+    // Leer el archivo "bitacoraHeap.txt"
     ifstream inFile;
     inFile.open("bitacoraHeap.txt");
     if(!inFile){
@@ -97,7 +97,7 @@ int main(){
         Registro temp = dataOrdenada[i+j]; // Almacena el primer valor
         // Compara el valor almacenado con los siguientes hasta que no sean iguales (Esto debido a que estan ordenados)
         while( temp.getIntIp(temp.getIp()) == dataOrdenada[i+j+1].getIntIp(dataOrdenada[i+j+1].getIp())){
-            cuenta++; // aumenra la cuenta
+            cuenta++; // aumenta la cuenta
             j++; // aumenta iterador
         }
         Ip tempIp(temp.getIp(), cuenta); // Crea un objeto IP con la ip actual y la cantidad de accesos
@@ -105,14 +105,17 @@ int main(){
         cuenta= 1; // Reinicia la cuenta
     }
 
-    // Guardar la cantidad de accesos en 'bitacora_ordenada.txt'
+    // Guardar la cantidad de accesos en 'ips_con_mayor_acceso.txt'
     cout << "Guardando cantidad de accesos totales ..." << endl;
     outputFile2.open("ips_con_mayor_acceso.txt");
-
+    cout << endl;
+    cout << "--> IPs con mayor acceso <--" << endl;
     for(int i=0; i<5; i++){
         outputFile2 << cantAccesos.top().getIp() << ": " << cantAccesos.top().getAccesosTotales() << endl;
+        cout << cantAccesos.top().getIp() << ": " << cantAccesos.top().getAccesosTotales() << endl; // Imprimir en pantalla
         cantAccesos.pop();
     }   
+    cout << endl;
 
     return 1;
 }

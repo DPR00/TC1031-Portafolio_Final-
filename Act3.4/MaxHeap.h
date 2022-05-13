@@ -47,18 +47,24 @@ MaxHeap<T>::~MaxHeap() {
     data.clear();
 }
 
+// Funcion empty():
+//   Verifica si el Heap esta vacio.
 // Complex: O(1) 
 template <class T> 
 bool MaxHeap<T>::empty() {
     return (size <= 0);
 }
 
+// Funcion getCapacity():
+//   Devuelve la capacidad maxima del heap.
 // Complex: O(1) 
 template <class T> 
 int MaxHeap<T>::getCapacity() {
     return maxSize;
 }
 
+// Funcion printMaxHeap():
+//   Imprime el Heap como vector.
 // Complex: O(size) 
 template <class T> 
 void MaxHeap<T>::printMaxHeap() {
@@ -67,24 +73,32 @@ void MaxHeap<T>::printMaxHeap() {
     std::cout << std::endl;
 }
 
+// Funcion parent():
+//   Devuelve el index del nodo padre.
 // Complex: O(1) 
 template <class T> 
 int MaxHeap<T>::parent(int i) {
     return (i-1)/2; 
 }
 
+// Funcion left():
+//   Devuelve el index del hijo de la izquierda.
 // Complex: O(1) 
 template <class T> 
 int MaxHeap<T>::left(int i) {
     return (2*i + 1); 
 }
 
+// Funcion right():
+//   Devuelve el index del hijo de la derecha.
 // Complex: O(1) 
 template <class T> 
 int MaxHeap<T>::right(int i) {
     return (2*i + 2);
 }
 
+// Funcion push():
+//   Agrega un valor en el MaxHeap
 // Complex: O(log2(n))
 template <class T> 
 void MaxHeap<T>::push(T key) {
@@ -102,6 +116,8 @@ void MaxHeap<T>::push(T key) {
     }
 }
 
+// Funcion top():
+//   Devuelve el valor del nodo raiz
 // Complex: O(1)
 template <class T> 
 T MaxHeap<T>::top() {
@@ -111,6 +127,8 @@ T MaxHeap<T>::top() {
     return data[0];
 }
 
+// Funcion pop():
+// Elimina el valor del nodo raiz.
 // Complex: O(log2(n))
 template <class T> 
 void MaxHeap<T>::pop() {
@@ -132,13 +150,18 @@ void MaxHeap<T>::pop() {
 
 }
 
+// Funcion getSize():
+//   Devuelve el tamaño actual del MaxHeap
 // Complex: O(1)
 template <class T> 
 int MaxHeap<T>::getSize() {
     return size;
 }
 
-// Complex: O(1)
+
+// Funcion sort():
+//   Ordena los elementos del MAxHeap con el agoritmo HeapSort.
+// Complex: O(nlog(n))
 template <class T> 
 void MaxHeap<T>::sort() {
     int tempsize = size;
@@ -156,7 +179,9 @@ void MaxHeap<T>::sort() {
     }
 }
 
-// Get data values. Complex: O(1)
+// Funcion getData():
+//   Devuelve los datos del Heap como vector.
+// Complex: O(1)
 template<class T>
 std::vector<T> MaxHeap<T>::getData(){
     return data;

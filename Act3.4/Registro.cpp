@@ -16,6 +16,7 @@ Registro::Registro(){
     reason = "b";
 }
 
+// Guardar datos
 void Registro::setData(string t_month, int t_day, string t_hours, string t_ip, string t_reason){
     
     ip = t_ip;
